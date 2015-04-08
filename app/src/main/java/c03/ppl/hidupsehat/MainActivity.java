@@ -1,7 +1,9 @@
 package c03.ppl.hidupsehat;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import c03.ppl.hidupsehat.Auth.Login;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
 
@@ -25,14 +28,24 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         dbInfo = new DatabaseInfo(this);
-//        // insert
-        boolean insertOK = dbInfo.insert(DatabaseField.USER_TABLE, "gede", "wahyu");
-//        // retrieve
-        ArrayList arrayList = dbInfo.getAllDataFromTable(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_PASSWORD);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList );
 
-        obj = (ListView) findViewById(R.id.listView1);
-        obj.setAdapter(arrayAdapter);
+        if (!dbInfo.isLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN)){
+            Intent loginScreen = new Intent(getApplicationContext(), Login.class);
+            loginScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            Log.e("Main", "redirect to login screen!");
+            startActivity(loginScreen);
+            dbInfo.close();
+            finish();
+        } else {
+
+
+//        // retrieve
+            ArrayList arrayList = dbInfo.getAllDataFromTable(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_PASSWORD);
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList );
+
+            obj = (ListView) findViewById(R.id.listView1);
+            obj.setAdapter(arrayAdapter);
+        }
     }
 
 

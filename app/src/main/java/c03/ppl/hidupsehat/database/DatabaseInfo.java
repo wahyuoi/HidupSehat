@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import c03.ppl.hidupsehat.database.DatabaseField;
-
 /**
  * Created by wahyuoi on 04/04/15.
  */
@@ -24,7 +22,10 @@ public class DatabaseInfo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
-                "create table " + DatabaseField.USER_TABLE + " (id integer, username text primary key, password text)"
+                "create table " + DatabaseField.USER_TABLE + " (id integer, "+DatabaseField.USER_COLUMN_USERNAME
+                        +" text primary key, "+ DatabaseField.USER_COLUMN_PASSWORD+" text, "+DatabaseField.USER_COLUMN_IS_LOGIN
+                        +" number, "+DatabaseField.USER_COLUMN_NAMA+" text, "+DatabaseField.USER_COLUMN_TINGGI
+                        +" number, "+DatabaseField.USER_COLUMN_BERAT+" number)"
         );
     }
 
@@ -33,15 +34,18 @@ public class DatabaseInfo extends SQLiteOpenHelper {
 
     }
 
-    public boolean insert(String table, String user, String pass){
+    public boolean insert(String table, ContentValues contentValues){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put("username", user);
-        contentValues.put("password", pass);
-
         long id = db.insert(table, null, contentValues);
+        db.close();
         return id != -1;
+    }
+
+    public boolean update(String table, ContentValues contentValues, String where, String[] values){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int ret = db.update(table, contentValues, where, values);
+        db.close();
+        return ret>0;
     }
 
     public ArrayList getAllDataFromTable(String table, String column_name){
@@ -55,7 +59,29 @@ public class DatabaseInfo extends SQLiteOpenHelper {
             arr.add(res.getString(res.getColumnIndex(column_name)));
             res.moveToNext();
         }
-
+        res.close();
+        db.close();
         return arr;
+    }
+
+    public boolean isLogin(String userTable, String userColumnIsLogin) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + userTable + " where " + userColumnIsLogin + " = 1", null);
+
+        res.moveToFirst();
+        boolean ret = false;
+        if (res.isAfterLast() == false)
+            ret = res.getInt(res.getColumnIndex(userColumnIsLogin)) == 1;
+        res.close();
+        db.close();
+        return ret;
+    }
+
+    public Cursor getFromQuery(String query) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery(query, null);
+
+        res.moveToFirst();
+        return res;
     }
 }

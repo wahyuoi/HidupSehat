@@ -9,7 +9,10 @@ public class DatabaseField {
     public static final String USER_TABLE = "user";
     public static final String USER_COLUMN_USERNAME = "username";
     public static final String USER_COLUMN_PASSWORD = "password";
-    public static final String isLogin = "islogin";
+    public static final String USER_COLUMN_IS_LOGIN = "isLogin";
+    public static final String USER_COLUMN_NAMA = "nama";
+    public static final String USER_COLUMN_TINGGI = "tinggi" ;
+    public static final String USER_COLUMN_BERAT = "berat" ;
 
     //
 }

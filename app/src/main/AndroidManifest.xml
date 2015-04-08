@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Auth.Login"
+            android:label="Login">
+        </activity>
+        <activity android:name=".Auth.SignUp"
+            android:label="SignUp">
+        </activity>
     </application>
 
 </manifest>
