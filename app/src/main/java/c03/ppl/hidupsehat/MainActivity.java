@@ -8,11 +8,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import c03.ppl.hidupsehat.Auth.Login;
+import c03.ppl.hidupsehat.Auth.Logout;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
 
@@ -26,7 +28,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Button logout = (Button) findViewById(R.id.logout);
+        logout.setOnClickListener(new Logout(this));
         dbInfo = new DatabaseInfo(this);
 
         if (!dbInfo.isLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN)){
@@ -40,11 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 //        // retrieve
-            ArrayList arrayList = dbInfo.getAllDataFromTable(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_PASSWORD);
-            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList );
 
-            obj = (ListView) findViewById(R.id.listView1);
-            obj.setAdapter(arrayAdapter);
         }
     }
 

@@ -13,6 +13,7 @@ public class DatabaseField {
     public static final String USER_COLUMN_NAMA = "nama";
     public static final String USER_COLUMN_TINGGI = "tinggi" ;
     public static final String USER_COLUMN_BERAT = "berat" ;
+    public static final String USER_COLUMN_UMUR = "umur";
 
     //
 }

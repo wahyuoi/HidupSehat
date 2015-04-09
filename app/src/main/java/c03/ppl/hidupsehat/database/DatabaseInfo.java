@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,10 @@ public class DatabaseInfo extends SQLiteOpenHelper {
                 "create table " + DatabaseField.USER_TABLE + " (id integer, "+DatabaseField.USER_COLUMN_USERNAME
                         +" text primary key, "+ DatabaseField.USER_COLUMN_PASSWORD+" text, "+DatabaseField.USER_COLUMN_IS_LOGIN
                         +" number, "+DatabaseField.USER_COLUMN_NAMA+" text, "+DatabaseField.USER_COLUMN_TINGGI
-                        +" number, "+DatabaseField.USER_COLUMN_BERAT+" number)"
+                        +" number, "+DatabaseField.USER_COLUMN_BERAT+" number, "+DatabaseField.USER_COLUMN_UMUR
+                        +" number)"
         );
+        Log.e(DatabaseInfo.class.getName(), "Create database");
     }
 
     @Override
