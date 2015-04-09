@@ -42,7 +42,7 @@ public class Login extends Activity {
             public void onClick(View v) {
                 Intent signUpIntent = new Intent(getApplicationContext(), SignUp.class);
                 signUpIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                Log.e("Login", "Opening Sign Up Form!");
+                Log.e(Login.class.getName(), "Opening Sign Up Form!");
                 startActivity(signUpIntent);
                 finish();
             }
@@ -53,7 +53,7 @@ public class Login extends Activity {
                 String username = inputName.getText().toString();
                 String password = inputPassword.getText().toString();
                 boolean login = doLogin(username, password);
-                Log.e("Login", username + " try login and " + ((login) ? "Success" : "Failed"));
+                Log.e(Login.class.getName(), username + " try login and " + ((login) ? "Success" : "Failed"));
 
                 if (!login){
                     msgLabel.setText("Username atau Password salah!");

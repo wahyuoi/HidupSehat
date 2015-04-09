@@ -56,7 +56,7 @@ public class SignUp extends Activity {
                         Intent login = new Intent(getApplicationContext(), Login.class);
                         login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         login.putExtra("msg", "Pendaftaran berhasil!");
-                        Log.e("SignUp", "Register success");
+                        Log.e(SignUp.class.getName(), "Register success");
                         startActivity(login);
                         finish();
                     } else {

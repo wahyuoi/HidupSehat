@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity {
         if (!dbInfo.isLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN)){
             Intent loginScreen = new Intent(getApplicationContext(), Login.class);
             loginScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            Log.e("Main", "redirect to login screen!");
+            Log.e(MainActivity.class.getName(), "redirect to login screen!");
             startActivity(loginScreen);
             dbInfo.close();
             finish();
