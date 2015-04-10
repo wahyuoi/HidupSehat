@@ -38,6 +38,8 @@ public class SignUp extends Activity {
         final EditText inputTinggi = (EditText) findViewById(R.id.tinggi);
         final EditText inputBerat = (EditText) findViewById(R.id.berat);
         Button buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
+        Button buttonLogin = (Button) findViewById(R.id.login);
+
         statusLabel = (TextView) findViewById(R.id.status);
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +65,16 @@ public class SignUp extends Activity {
                         statusLabel.setText("username sudah terdaftar!");
                     }
 
+            }
+        });
+
+        buttonLogin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(getApplicationContext(), Login.class);
+                Log.e(SignUp.class.getName(), "Move to login screen");
+                startActivity(login);
+                finish();
             }
         });
 

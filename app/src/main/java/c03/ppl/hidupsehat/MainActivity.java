@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import c03.ppl.hidupsehat.Auth.EditProfile;
 import c03.ppl.hidupsehat.Auth.Login;
 import c03.ppl.hidupsehat.Auth.Logout;
 import c03.ppl.hidupsehat.database.DatabaseField;
@@ -28,8 +30,18 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button logout = (Button) findViewById(R.id.logout);
-        logout.setOnClickListener(new Logout(this));
+        Button buttonLogout = (Button) findViewById(R.id.logout);
+        Button buttonEditProfile = (Button) findViewById(R.id.edit_profile);
+
+        buttonLogout.setOnClickListener(new Logout(this));
+        buttonEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editProfile = new Intent(getApplicationContext(), EditProfile.class);
+                Log.e(MainActivity.class.getName(), "Move to Edit Profile");
+                startActivity(editProfile);
+            }
+        });
         dbInfo = new DatabaseInfo(this);
 
         if (!dbInfo.isLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN)){
