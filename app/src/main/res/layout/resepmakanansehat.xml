@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    android:id="@+id/resepMakananSehat">
+
+    <ImageButton
+        android:layout_width="500px"
+        android:layout_height="150px"
+        android:id="@+id/daftarResep"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/daftarresep"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageButton
+        android:layout_width="500px"
+        android:layout_height="150px"
+        android:id="@+id/mencariresep"
+        android:src="@drawable/mencariresep"
+        android:layout_below="@+id/daftarResep"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="500px"
+        android:layout_height="150px"
+        android:id="@+id/resepFavorit"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/resepfavorit"
+        android:layout_below="@+id/mencariresep"
+        android:layout_alignLeft="@+id/mencariresep"
+        android:layout_alignStart="@+id/mencariresep" />
+
+    <ImageButton
+        android:layout_width="500px"
+        android:layout_height="150px"
+        android:id="@+id/requestResep"
+        android:layout_below="@+id/resepFavorit"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/requestresep" />
+
+    <ImageButton
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:id="@+id/back"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/back" />
+
+
+
+    <ImageButton
+        android:layout_width="125px"
+        android:layout_height="100px"
+        android:id="@+id/logout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/logout" />
+</RelativeLayout>
