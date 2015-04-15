@@ -44,7 +44,7 @@ public class Login extends Activity {
                 signUpIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Log.e(Login.class.getName(), "Opening Sign Up Form!");
                 startActivity(signUpIntent);
-                finish();
+//                finish();
             }
         });
         inputLogin.setOnClickListener(new View.OnClickListener() {
