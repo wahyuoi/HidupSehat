@@ -5,45 +5,45 @@
     android:id="@+id/resepMakananSehat">
 
     <ImageButton
-        android:layout_width="500px"
-        android:layout_height="150px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/daftarResep"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="90dp"
         android:src="@drawable/daftarresep"
         android:layout_centerHorizontal="true"
         />
 
     <ImageButton
-        android:layout_width="500px"
-        android:layout_height="150px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/mencariresep"
-        android:src="@drawable/mencariresep"
+        android:src="@drawable/daftarresep"
         android:layout_below="@+id/daftarResep"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="500px"
-        android:layout_height="150px"
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/resepFavorit"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/resepfavorit"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/daftarresep"
         android:layout_below="@+id/mencariresep"
-        android:layout_alignLeft="@+id/mencariresep"
-        android:layout_alignStart="@+id/mencariresep" />
+        android:layout_centerHorizontal="true"
+        />
 
     <ImageButton
-        android:layout_width="500px"
-        android:layout_height="150px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/requestResep"
         android:layout_below="@+id/resepFavorit"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/requestresep" />
+        android:src="@drawable/daftarresep" />
 
     <ImageButton
-        android:layout_width="200px"
-        android:layout_height="100px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/back"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -53,11 +53,11 @@
 
 
     <ImageButton
-        android:layout_width="125px"
-        android:layout_height="100px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/logout"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/logout" />
+        android:src="@drawable/logout2" />
 </RelativeLayout>
