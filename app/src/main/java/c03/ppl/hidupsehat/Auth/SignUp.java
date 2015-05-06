@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import c03.ppl.hidupsehat.R;
@@ -37,8 +38,8 @@ public class SignUp extends Activity {
         final EditText inputUmur = (EditText) findViewById(R.id.umur);
         final EditText inputTinggi = (EditText) findViewById(R.id.tinggi);
         final EditText inputBerat = (EditText) findViewById(R.id.berat);
-        Button buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
-//        Button buttonLogin = (Button) findViewById(R.id.login);
+        ImageButton buttonSignUp = (ImageButton) findViewById(R.id.signup);
+        ImageButton buttonCancel = (ImageButton) findViewById(R.id.cancel);
 
         statusLabel = (TextView) findViewById(R.id.status);
 
@@ -68,15 +69,15 @@ public class SignUp extends Activity {
             }
         });
 
-//        buttonLogin.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Intent login = new Intent(getApplicationContext(), Login.class);
-//                Log.e(SignUp.class.getName(), "Move to login screen");
-//                startActivity(login);
-//                finish();
-//            }
-//        });
+        buttonCancel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(getApplicationContext(), Login.class);
+                Log.e(SignUp.class.getName(), "Move to login screen");
+                startActivity(login);
+                finish();
+            }
+        });
 
     }
 

@@ -29,9 +29,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         Button buttonLogout = (Button) findViewById(R.id.logout);
-        Button buttonEditProfile = (Button) findViewById(R.id.edit_profile);
+        Button buttonEditProfile = (Button) findViewById(R.id.profile);
 
         buttonLogout.setOnClickListener(new Logout(this));
         buttonEditProfile.setOnClickListener(new View.OnClickListener() {
