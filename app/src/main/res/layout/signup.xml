@@ -198,4 +198,15 @@
             android:id="@+id/cancel"
             android:layout_alignBottom="@+id/signup"
             android:layout_toRightOf="@+id/signup"
-            an
+            android:layout_toEndOf="@+id/signup"
+            android:src="@drawable/cancel" />
+
+        <!--android:layout_alignLeft="@+id/cewe"
+            android:layout_alignStart="@+id/cewe"-->
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
