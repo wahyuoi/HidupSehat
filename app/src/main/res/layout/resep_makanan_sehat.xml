@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:background="@drawable/background"
     android:id="@+id/resepMakananSehat">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/daftarResep"
+        android:id="@+id/daftarresep"
         android:layout_marginTop="90dp"
         android:src="@drawable/daftarresep"
         android:layout_centerHorizontal="true"
@@ -17,17 +17,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mencariresep"
-        android:src="@drawable/daftarresep"
-        android:layout_below="@+id/daftarResep"
+        android:src="@drawable/mencariresep"
+        android:layout_below="@+id/daftarresep"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/resepFavorit"
+        android:id="@+id/resepfavorit"
         android:layout_marginTop="20dp"
-        android:src="@drawable/daftarresep"
+        android:src="@drawable/resepfavorit"
         android:layout_below="@+id/mencariresep"
         android:layout_centerHorizontal="true"
         />
@@ -35,11 +35,11 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/requestResep"
-        android:layout_below="@+id/resepFavorit"
+        android:id="@+id/requestresep"
+        android:layout_below="@+id/resepfavorit"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/daftarresep" />
+        android:src="@drawable/requestresep" />
 
     <ImageButton
         android:layout_width="wrap_content"
