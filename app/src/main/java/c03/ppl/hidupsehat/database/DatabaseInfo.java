@@ -29,6 +29,35 @@ public class DatabaseInfo extends SQLiteOpenHelper {
                         +" number, "+DatabaseField.USER_COLUMN_BERAT+" number, "+DatabaseField.USER_COLUMN_UMUR
                         +" number, "+DatabaseField.USER_COLUMN_KELAMIN+" text)"
         );
+        
+              db.execSQL("CREATE TABLE " + DatabaseField.RESEP_MAKANAN_TABLE + "( "
+                + DatabaseField.RESEP_MAKANAN_ID_USER + " NUMBER, "
+                + DatabaseField.RESEP_MAKANAN_ID + " NUMBER NOT NULL AUTOINCREMENT, "
+                + DatabaseField.RESEP_MAKANAN_NAMA + " VARCHAR(30) NOT NULL, "
+                + DatabaseField.RESEP_MAKANAN_KALORI + " NUMBER, "
+                + DatabaseField.RESEP_MAKANAN_CARA_MEMBUAT + " TEXT, "
+                + DatabaseField.RESEP_MAKANAN_SARAN_PENYAJIAN + " TEXT "
+                + ")"
+        );
+
+
+        db.execSQL("CREATE TABLE "+DatabaseField.BAHAN_MAKANAN_TABLE + "( "
+                + DatabaseField.BAHAN_MAKANAN_ID + " NUMBER NOT NULL AUTOINCREMENT, "
+                + DatabaseField.BAHAN_MAKANAN_NAMA + " VARCHAR(30) NOT NULL, "
+                + DatabaseField.BAHAN_MAKANAN_KALORI + " NUMBER)"
+        );
+
+
+
+
+        db.execSQL("CREATE TABLE "+DatabaseField.RESEP_DAN_BAHAN_TABLE + "( "
+                + DatabaseField.RESEP_DAN_BAHAN_ID_RESEP + " NUMBER NOT NULL, "
+                + DatabaseField.RESEP_DAN_BAHAN_ID_BAHAN + " NUMBER NOT NULL, "
+                + DatabaseField.RESEP_DAN_BAHAN_KETERANGAN + " VARCHAR(100))"
+                );
+        
+        
+        
         Log.e(DatabaseInfo.class.getName(), "Create database");
     }
 
