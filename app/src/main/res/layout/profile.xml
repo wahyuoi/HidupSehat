@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/profile"
-    android:background="@drawable/background2">
+    android:background="@drawable/background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,8 +11,7 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="52dp" />
+        android:layout_alignParentStart="true" />
 
 
     <EditText
@@ -45,34 +44,14 @@
         android:layout_alignParentStart="true" />
 
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Age"
-        android:id="@+id/textView9"
-        android:layout_below="@+id/password"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/age"
-        android:layout_below="@+id/textView9"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Height"
         android:id="@+id/textView10"
-        android:layout_below="@+id/age"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/password" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -84,25 +63,42 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/save"
-        android:layout_marginTop="74dp"
-        android:layout_below="@+id/height"
-        android:layout_toRightOf="@+id/textView10"
-        android:layout_toEndOf="@+id/textView10"
-        android:background="#32150052" />
+        android:id="@+id/submit"
+        android:src="@drawable/submit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="36dp" />
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
         android:id="@+id/cancel"
-        android:layout_alignBottom="@+id/save"
-        android:layout_toRightOf="@+id/height"
-        android:layout_toEndOf="@+id/height"
-        android:background="#32150052" />
+        android:layout_alignTop="@+id/submit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/cancel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/weight"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
