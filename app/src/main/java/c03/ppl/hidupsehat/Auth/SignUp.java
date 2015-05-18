@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import c03.ppl.hidupsehat.R;
 import c03.ppl.hidupsehat.Tools.Misc;
+import c03.ppl.hidupsehat.Tools.Sync;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
 
@@ -35,13 +36,12 @@ public class SignUp extends Activity {
         final EditText inputUsername = (EditText) findViewById(R.id.username);
         final EditText inputPassword = (EditText) findViewById(R.id.password);
         final EditText inputNama = (EditText) findViewById(R.id.nama);
-        final EditText inputUmur = (EditText) findViewById(R.id.umur);
-        final EditText inputTinggi = (EditText) findViewById(R.id.tinggi);
-        final EditText inputBerat = (EditText) findViewById(R.id.berat);
+        final EditText inputTinggi = (EditText) findViewById(R.id.height);
+        final EditText inputBerat = (EditText) findViewById(R.id.weight);
         ImageButton buttonSignUp = (ImageButton) findViewById(R.id.signup);
         ImageButton buttonCancel = (ImageButton) findViewById(R.id.cancel);
 
-        statusLabel = (TextView) findViewById(R.id.status);
+//        statusLabel = (TextView) findViewById(R.id.status);
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +51,10 @@ public class SignUp extends Activity {
                 String nama = inputNama.getText().toString();
                 String tinggi = inputTinggi.getText().toString();
                 String berat = inputBerat.getText().toString();
-                String umur = inputUmur.getText().toString();
 
-                if (validInput(username, password, nama, tinggi, berat, umur))
+                if (validInput(username, password, nama, tinggi, berat))
                     if (!isRegistered(username)) {
-                        doRegister(username, password, nama, tinggi, berat, umur);
+                        doRegister(username, password, nama, tinggi, berat);
                         Intent login = new Intent(getApplicationContext(), Login.class);
                         login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         login.putExtra("msg", "Pendaftaran berhasil!");
@@ -81,15 +80,13 @@ public class SignUp extends Activity {
 
     }
 
-    private boolean validInput(String username, String password, String nama, String tinggi, String berat, String umur) {
+    private boolean validInput(String username, String password, String nama, String tinggi, String berat) {
         if (username == null || username.trim().isEmpty() || (username.split(" ").length > 1))
             statusLabel.setText("Username tidak boleh kosong");
         else if (password == null || password.trim().isEmpty())
             statusLabel.setText("Password tidak boleh kosong");
         else if (nama == null || nama.trim().isEmpty())
             statusLabel.setText("Nama tidak boleh kosong");
-        else if (umur == null || umur.trim().isEmpty())
-            statusLabel.setText("Umur tidak boleh kosong");
         else if (berat == null || berat.trim().isEmpty())
             statusLabel.setText("Berat badan tidak boleh kosong");
         else if (tinggi == null || tinggi.trim().isEmpty())
@@ -98,8 +95,6 @@ public class SignUp extends Activity {
             statusLabel.setText("Berat badan harus bulat positif");
         else if (!Misc.isPositiveNumeric(tinggi))
             statusLabel.setText("Tinggi badan harus bulat positif");
-        else if (!Misc.isPositiveNumeric(umur))
-            statusLabel.setText("Umur harus bulat positif");
         else
             return true;
         return false;
@@ -116,18 +111,19 @@ public class SignUp extends Activity {
         return ret;
     }
 
-    private boolean doRegister(String username, String password, String nama, String tinggi, String berat, String umur) {
+    private boolean doRegister(String username, String password, String nama, String tinggi, String berat) {
         DatabaseInfo dbInfo = new DatabaseInfo(this);
         ContentValues values = new ContentValues();
+        values.put(DatabaseField.USER_COLUMN_ID, System.currentTimeMillis());
         values.put(DatabaseField.USER_COLUMN_USERNAME, username);
         values.put(DatabaseField.USER_COLUMN_PASSWORD, password);
         values.put(DatabaseField.USER_COLUMN_NAMA, nama);
         values.put(DatabaseField.USER_COLUMN_TINGGI, tinggi);
         values.put(DatabaseField.USER_COLUMN_BERAT, berat);
         values.put(DatabaseField.USER_COLUMN_IS_LOGIN, 0);
-        values.put(DatabaseField.USER_COLUMN_UMUR, umur);
         boolean ret = dbInfo.insert(DatabaseField.USER_TABLE, values);
         dbInfo.close();
+        (new Sync()).registerUser(values, this);
         return ret;
     }
 }

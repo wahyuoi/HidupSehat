@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import c03.ppl.hidupsehat.MainActivity;
@@ -28,23 +30,21 @@ public class EditProfile extends Activity {
     private EditText inputTinggi;
     private Button buttonSave;
     private EditText inputBerat;
-    private Button buttonCancel;
+    private ImageButton buttonCancel;
     private TextView statusLabel;
     private String oldPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_profile);
+        setContentView(R.layout.profile);
 
         inputUsername = (TextView) findViewById(R.id.username);
         inputPassword = (EditText) findViewById(R.id.password);
         inputNama = (EditText) findViewById(R.id.nama);
-        inputUmur = (EditText) findViewById(R.id.umur);
-        inputTinggi = (EditText) findViewById(R.id.tinggi);
-        inputBerat = (EditText) findViewById(R.id.berat);
-        buttonSave = (Button) findViewById(R.id.buttonSave);
-        buttonCancel = (Button) findViewById(R.id.cancel);
-        statusLabel = (TextView) findViewById(R.id.status);
+        inputTinggi = (EditText) findViewById(R.id.height);
+        inputBerat = (EditText) findViewById(R.id.weight);
+        buttonSave = (Button) findViewById(R.id.submit);
+        buttonCancel = (ImageButton) findViewById(R.id.cancel);
 
         setFieldValue();
 
@@ -111,8 +111,6 @@ public class EditProfile extends Activity {
             statusLabel.setText("Berat badan harus bulat positif");
         else if (!Misc.isPositiveNumeric(tinggi))
             statusLabel.setText("Tinggi badan harus bulat positif");
-        else if (!Misc.isPositiveNumeric(umur))
-            statusLabel.setText("Umur harus bulat positif");
         else
             return true;
         return false;

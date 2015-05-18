@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import c03.ppl.hidupsehat.Auth.EditProfile;
 import c03.ppl.hidupsehat.Auth.Login;
 import c03.ppl.hidupsehat.Auth.Logout;
+import c03.ppl.hidupsehat.Menu.ResepMakanan;
+import c03.ppl.hidupsehat.Tools.Sync;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
 
@@ -29,9 +32,14 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Sycn user
+        Sync sync = new Sync();
+        sync.fetchUsers(this);
+
         setContentView(R.layout.main);
-        Button buttonLogout = (Button) findViewById(R.id.logout);
-        Button buttonEditProfile = (Button) findViewById(R.id.profile);
+        ImageButton buttonLogout = (ImageButton) findViewById(R.id.logout);
+        ImageButton buttonEditProfile = (ImageButton) findViewById(R.id.profil);
+        ImageButton buttonResepMakanan = (ImageButton) findViewById(R.id.resepMakananSehat);
 
         buttonLogout.setOnClickListener(new Logout(this));
         buttonEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +48,14 @@ public class MainActivity extends ActionBarActivity {
                 Intent editProfile = new Intent(getApplicationContext(), EditProfile.class);
                 Log.e(MainActivity.class.getName(), "Move to Edit Profile");
                 startActivity(editProfile);
+            }
+        });
+        buttonResepMakanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resepMakanan = new Intent(getApplicationContext(), ResepMakanan.class);
+                Log.e(ResepMakanan.class.getName(), "Move to Resep Makanan Sehat");
+                startActivity(resepMakanan);
             }
         });
         dbInfo = new DatabaseInfo(this);
@@ -51,12 +67,10 @@ public class MainActivity extends ActionBarActivity {
             startActivity(loginScreen);
             dbInfo.close();
             finish();
-        } else {
-
-
-//        // retrieve
-
         }
+
+        // user udah login
+
     }
 
 

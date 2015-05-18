@@ -25,6 +25,10 @@
         <activity android:name=".Auth.EditProfile"
             android:label="SignUp">
         </activity>
+        <activity android:name=".Menu.ResepMakanan"
+            android:label="MenuResepMakanan">
+        </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

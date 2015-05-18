@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DatabaseInfo extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public DatabaseInfo(Context context) {
         super(context, DatabaseField.DATABASE_NAME, null, DATABASE_VERSION);
@@ -23,18 +23,19 @@ public class DatabaseInfo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
-                "create table " + DatabaseField.USER_TABLE + " (id integer, "+DatabaseField.USER_COLUMN_USERNAME
-                        +" text primary key, "+ DatabaseField.USER_COLUMN_PASSWORD+" text, "+DatabaseField.USER_COLUMN_IS_LOGIN
+                "create table " + DatabaseField.USER_TABLE + " ("+DatabaseField.USER_COLUMN_ID+" integer primari key, "+DatabaseField.USER_COLUMN_USERNAME
+                        +" text unique, "+ DatabaseField.USER_COLUMN_PASSWORD+" text, "+DatabaseField.USER_COLUMN_IS_LOGIN
                         +" number, "+DatabaseField.USER_COLUMN_NAMA+" text, "+DatabaseField.USER_COLUMN_TINGGI
                         +" number, "+DatabaseField.USER_COLUMN_BERAT+" number, "+DatabaseField.USER_COLUMN_UMUR
-                        +" number)"
+                        +" number, "+DatabaseField.USER_COLUMN_KELAMIN+" text)"
         );
         Log.e(DatabaseInfo.class.getName(), "Create database");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("drop table " + DatabaseField.USER_TABLE);
+        onCreate(db);
     }
 
     public boolean insert(String table, ContentValues contentValues){
@@ -86,5 +87,10 @@ public class DatabaseInfo extends SQLiteOpenHelper {
 
         res.moveToFirst();
         return res;
+    }
+
+    public void deleteTableContent(String table){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(table, null, null );
     }
 }
