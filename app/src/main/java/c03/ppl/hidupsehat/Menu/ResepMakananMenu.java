@@ -21,6 +21,8 @@ public class ResepMakananMenu extends Activity {
         setContentView(R.layout.resep_makanan_sehat);
 
         ImageButton daftarResep = (ImageButton) findViewById(R.id.daftarresep);
+        ImageButton pencarian = (ImageButton) findViewById(R.id.mencariresep);
+        ImageButton favorit = (ImageButton) findViewById(R.id.resepfavorit);
 
         daftarResep.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +30,24 @@ public class ResepMakananMenu extends Activity {
                 Intent daftar = new Intent(getApplicationContext(), Index.class);
                 Log.e(Index.class.getName(), "Move To Daftar Resep");
                 startActivity(daftar);
+            }
+        });
+
+        pencarian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), c03.ppl.hidupsehat.Makanan.Search.Index.class);
+                Log.e(c03.ppl.hidupsehat.Makanan.Search.Index.class.getName(), "Move to Pencarian Resep");
+                startActivity(intent);
+            }
+        });
+
+        favorit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), c03.ppl.hidupsehat.Makanan.Favorit.Index.class);
+                Log.e(c03.ppl.hidupsehat.Makanan.Favorit.Index.class.getName(), "Move to Daftar Resep Favorit");
+                startActivity(intent);
             }
         });
     }

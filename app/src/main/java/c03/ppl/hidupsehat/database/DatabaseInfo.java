@@ -19,7 +19,7 @@ public class DatabaseInfo extends SQLiteOpenHelper {
     public DatabaseInfo(Context context) {
         super(context, DatabaseField.DATABASE_NAME, null, DATABASE_VERSION);
     }
-    
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
@@ -113,7 +113,18 @@ public class DatabaseInfo extends SQLiteOpenHelper {
         db.close();
         return ret;
     }
+    public int getIdLogin(String userTable, String userColumnIsLogin) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + userTable + " where " + userColumnIsLogin + " = 1", null);
 
+        res.moveToFirst();
+        int ret = -1;
+        if (res.isAfterLast() == false)
+            ret = res.getInt(res.getColumnIndex(DatabaseField.USER_COLUMN_ID));
+        res.close();
+        db.close();
+        return ret;
+    }
     public Cursor getFromQuery(String query) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery(query, null);

@@ -76,6 +76,14 @@ public class Sync {
                 System.err.println("Sync resep makanan down fail");
             }
         });
+
+        // DUMMY FAVORIT
+        DatabaseInfo dbInfo = new DatabaseInfo(context);
+        ContentValues values = new ContentValues();
+        values.put(DatabaseField.FAVORIT_RESEP, 1);
+        values.put(DatabaseField.FAVORIT_USER, 1);
+        dbInfo.insert(DatabaseField.FAVORIT_TABLE, values);
+        System.err.println("Insert dummy fav done");
     }
 
     public void registerUser(ContentValues values, Context context) {

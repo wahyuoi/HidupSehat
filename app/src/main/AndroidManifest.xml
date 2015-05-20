@@ -32,6 +32,12 @@
             android:label="DaftarResep"></activity>
         <activity android:name=".Makanan.Resep.DisplayResep"
             android:label="DisplayResep">   </activity>
+        <activity android:name=".Makanan.Search.Index"
+            android:label="SearchResepMakanan"></activity>
+        <activity android:name=".Makanan.Favorit.Index"
+            android:label="DaftarFavorit"></activity>
+        <activity android:name=".Menu.AchievementMenu"
+            android:label="MenuAchievement"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 

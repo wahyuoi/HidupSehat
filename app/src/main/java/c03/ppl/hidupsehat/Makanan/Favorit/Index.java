@@ -1,4 +1,4 @@
-package c03.ppl.hidupsehat.Makanan.Resep;
+package c03.ppl.hidupsehat.Makanan.Favorit;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,20 +11,27 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import c03.ppl.hidupsehat.Makanan.Resep.DisplayResep;
 import c03.ppl.hidupsehat.R;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
 
 /**
- * Created by wahyuoi on 18/05/15.
+ * Created by wahyuoi on 20/05/15.
  */
 public class Index extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DatabaseInfo dbInfo = new DatabaseInfo(this);
-        Cursor cursor = dbInfo.getFromQuery("select * from " + DatabaseField.RESEP_MAKANAN_TABLE);
-
+        int idUser = dbInfo.getIdLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN);
+        String query = "Select * from "+DatabaseField.RESEP_MAKANAN_TABLE+
+                " INNER JOIN "+DatabaseField.FAVORIT_TABLE+
+                " ON "+DatabaseField.RESEP_MAKANAN_TABLE+"."+DatabaseField.RESEP_MAKANAN_ID+" = "+
+                DatabaseField.FAVORIT_TABLE+"."+DatabaseField.FAVORIT_RESEP+" where "+
+                DatabaseField.FAVORIT_TABLE+"."+DatabaseField.FAVORIT_USER+" = "+
+                idUser;
+        Cursor cursor = dbInfo.getFromQuery(query);
         ArrayList arrayList = new ArrayList();
 
         while(cursor.isAfterLast() == false){
@@ -32,8 +39,7 @@ public class Index extends Activity {
             cursor.moveToNext();
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
-
-        setContentView(R.layout.daftar_resep);
+        setContentView(R.layout.daftar_resep_favorit);
         ListView obj = (ListView) findViewById(R.id.listview_resep);
         obj.setAdapter(arrayAdapter);
         obj.setOnItemClickListener(new AdapterView.OnItemClickListener() {

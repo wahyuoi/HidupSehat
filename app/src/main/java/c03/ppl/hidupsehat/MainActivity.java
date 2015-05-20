@@ -14,6 +14,7 @@ import android.widget.ListView;
 import c03.ppl.hidupsehat.Auth.EditProfile;
 import c03.ppl.hidupsehat.Auth.Login;
 import c03.ppl.hidupsehat.Auth.Logout;
+import c03.ppl.hidupsehat.Menu.AchievementMenu;
 import c03.ppl.hidupsehat.Menu.ResepMakananMenu;
 import c03.ppl.hidupsehat.Tools.Sync;
 import c03.ppl.hidupsehat.database.DatabaseField;
@@ -28,14 +29,12 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Sycn user
-        Sync sync = new Sync();
-        sync.fetchUsers(this);
 
         setContentView(R.layout.main);
         ImageButton buttonLogout = (ImageButton) findViewById(R.id.logout);
         ImageButton buttonEditProfile = (ImageButton) findViewById(R.id.profil);
         ImageButton buttonResepMakanan = (ImageButton) findViewById(R.id.resepMakananSehat);
+        ImageButton buttonAchievement = (ImageButton) findViewById(R.id.achievement);
 
         buttonLogout.setOnClickListener(new Logout(this));
         buttonEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -54,9 +53,21 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(resepMakanan);
             }
         });
+        buttonAchievement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AchievementMenu.class);
+                Log.e(AchievementMenu.class.getName(), "Move to Achievement");
+                startActivity(intent);
+            }
+        });
         dbInfo = new DatabaseInfo(this);
 
         if (!dbInfo.isLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN)){
+            // Sycn user
+            Sync sync = new Sync();
+            sync.fetchUsers(this);
+
             Intent loginScreen = new Intent(getApplicationContext(), Login.class);
             loginScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             Log.e(MainActivity.class.getName(), "redirect to login screen!");
