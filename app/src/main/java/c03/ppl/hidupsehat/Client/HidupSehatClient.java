@@ -16,6 +16,9 @@ public interface HidupSehatClient {
     @GET("/users")
     public void getAllUsers(Callback<List<User>> call);
 
+    @GET("/resepMakanan")
+    public void getAllResep(Callback<List<ResepMakanan>> call);
+
     @POST("/addUser")
     public void postUser(@Body User user, Callback<User> call);
 }

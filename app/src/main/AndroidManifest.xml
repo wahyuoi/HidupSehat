@@ -25,9 +25,13 @@
         <activity android:name=".Auth.EditProfile"
             android:label="SignUp">
         </activity>
-        <activity android:name=".Menu.ResepMakanan"
+        <activity android:name=".Menu.ResepMakananMenu"
             android:label="MenuResepMakanan">
         </activity>
+        <activity android:name=".Makanan.Resep.Index"
+            android:label="DaftarResep"></activity>
+        <activity android:name=".Makanan.Resep.DisplayResep"
+            android:label="DisplayResep">   </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 

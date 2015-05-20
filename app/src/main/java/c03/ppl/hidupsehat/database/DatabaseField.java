@@ -39,4 +39,10 @@ public class DatabaseField {
     public static final String RESEP_DAN_BAHAN_ID_RESEP = "idResep";
     public static final String RESEP_DAN_BAHAN_ID_BAHAN = "idBahan";
     public static final String RESEP_DAN_BAHAN_KETERANGAN = "keterangan";
+
+    // FAVORIT
+    public static final String FAVORIT_TABLE = "favorit";
+    public static final String FAVORIT_RESEP = "idResep";
+    public static final String FAVORIT_USER = "idUser";
+
 }

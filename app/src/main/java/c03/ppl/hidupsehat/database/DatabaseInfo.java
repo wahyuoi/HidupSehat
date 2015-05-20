@@ -30,10 +30,10 @@ public class DatabaseInfo extends SQLiteOpenHelper {
                         +" number, "+DatabaseField.USER_COLUMN_KELAMIN+" text)"
         );
         
-              db.execSQL("CREATE TABLE " + DatabaseField.RESEP_MAKANAN_TABLE + "( "
+      db.execSQL("CREATE TABLE " + DatabaseField.RESEP_MAKANAN_TABLE + "( "
                 + DatabaseField.RESEP_MAKANAN_ID_USER + " NUMBER, "
-                + DatabaseField.RESEP_MAKANAN_ID + " NUMBER NOT NULL AUTOINCREMENT, "
-                + DatabaseField.RESEP_MAKANAN_NAMA + " VARCHAR(30) NOT NULL, "
+                + DatabaseField.RESEP_MAKANAN_ID + " NUMBER, "
+                + DatabaseField.RESEP_MAKANAN_NAMA + " TEXT, "
                 + DatabaseField.RESEP_MAKANAN_KALORI + " NUMBER, "
                 + DatabaseField.RESEP_MAKANAN_CARA_MEMBUAT + " TEXT, "
                 + DatabaseField.RESEP_MAKANAN_SARAN_PENYAJIAN + " TEXT "
@@ -42,11 +42,15 @@ public class DatabaseInfo extends SQLiteOpenHelper {
 
 
         db.execSQL("CREATE TABLE "+DatabaseField.BAHAN_MAKANAN_TABLE + "( "
-                + DatabaseField.BAHAN_MAKANAN_ID + " NUMBER NOT NULL AUTOINCREMENT, "
-                + DatabaseField.BAHAN_MAKANAN_NAMA + " VARCHAR(30) NOT NULL, "
+                + DatabaseField.BAHAN_MAKANAN_ID + " NUMBER, "
+                + DatabaseField.BAHAN_MAKANAN_NAMA + " TEXT, "
                 + DatabaseField.BAHAN_MAKANAN_KALORI + " NUMBER)"
         );
 
+        db.execSQL("CREATE TABLE "+DatabaseField.FAVORIT_TABLE+"( "
+                + DatabaseField.FAVORIT_RESEP + " NUMBER, "
+                + DatabaseField.FAVORIT_USER + " NUMBER)"
+        );
 
 
 

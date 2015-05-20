@@ -28,7 +28,7 @@ public class EditProfile extends Activity {
     private EditText inputNama;
     private EditText inputUmur;
     private EditText inputTinggi;
-    private Button buttonSave;
+    private ImageButton buttonSave;
     private EditText inputBerat;
     private ImageButton buttonCancel;
     private TextView statusLabel;
@@ -43,7 +43,7 @@ public class EditProfile extends Activity {
         inputNama = (EditText) findViewById(R.id.nama);
         inputTinggi = (EditText) findViewById(R.id.height);
         inputBerat = (EditText) findViewById(R.id.weight);
-        buttonSave = (Button) findViewById(R.id.submit);
+        buttonSave = (ImageButton) findViewById(R.id.submit);
         buttonCancel = (ImageButton) findViewById(R.id.cancel);
 
         setFieldValue();

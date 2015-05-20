@@ -7,6 +7,7 @@ import java.util.List;
 
 import c03.ppl.hidupsehat.Auth.SignUp;
 import c03.ppl.hidupsehat.Client.HidupSehatClient;
+import c03.ppl.hidupsehat.Entity.ResepMakanan;
 import c03.ppl.hidupsehat.Entity.User;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
@@ -43,12 +44,36 @@ public class Sync {
 
                     dbInfo.insert(DatabaseField.USER_TABLE,values);
                 }
-                System.err.println("Sync down ok");
+                System.err.println("Sync users down ok");
             }
 
             @Override
             public void failure(RetrofitError error) {
+                System.err.println("Sync users down fail");
+            }
+        });
 
+        client.getAllResep(new Callback<List<ResepMakanan>>() {
+            @Override
+            public void success(List<ResepMakanan> resepMakanans, Response response) {
+                DatabaseInfo dbInfo = new DatabaseInfo(context);
+                dbInfo.deleteTableContent(DatabaseField.RESEP_MAKANAN_TABLE);
+                for (ResepMakanan resepMakanan : resepMakanans) {
+                    ContentValues values = new ContentValues();
+                    values.put(DatabaseField.RESEP_MAKANAN_ID, resepMakanan.getId());
+                    values.put(DatabaseField.RESEP_MAKANAN_CARA_MEMBUAT, resepMakanan.getCaraMembuat());
+                    values.put(DatabaseField.RESEP_MAKANAN_KALORI, resepMakanan.getKalori());
+                    values.put(DatabaseField.RESEP_MAKANAN_NAMA, resepMakanan.getNama());
+                    values.put(DatabaseField.RESEP_MAKANAN_SARAN_PENYAJIAN, resepMakanan.getSaranPenyajian());
+
+                    dbInfo.insert(DatabaseField.RESEP_MAKANAN_TABLE,values);
+                }
+                System.err.println("Sync resep makanan down ok");
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                System.err.println("Sync resep makanan down fail");
             }
         });
     }

@@ -8,17 +8,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 import c03.ppl.hidupsehat.Auth.EditProfile;
 import c03.ppl.hidupsehat.Auth.Login;
 import c03.ppl.hidupsehat.Auth.Logout;
-import c03.ppl.hidupsehat.Menu.ResepMakanan;
+import c03.ppl.hidupsehat.Menu.ResepMakananMenu;
 import c03.ppl.hidupsehat.Tools.Sync;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
@@ -53,8 +49,8 @@ public class MainActivity extends ActionBarActivity {
         buttonResepMakanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent resepMakanan = new Intent(getApplicationContext(), ResepMakanan.class);
-                Log.e(ResepMakanan.class.getName(), "Move to Resep Makanan Sehat");
+                Intent resepMakanan = new Intent(getApplicationContext(), ResepMakananMenu.class);
+                Log.e(ResepMakananMenu.class.getName(), "Move to Resep Makanan Sehat");
                 startActivity(resepMakanan);
             }
         });
