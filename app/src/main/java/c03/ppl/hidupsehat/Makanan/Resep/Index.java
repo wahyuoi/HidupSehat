@@ -44,6 +44,7 @@ public class Index extends Activity {
                 Intent intent = new Intent(getApplicationContext(), DisplayResep.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
     }

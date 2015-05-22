@@ -5,7 +5,6 @@ import android.content.Context;
 
 import java.util.List;
 
-import c03.ppl.hidupsehat.Auth.SignUp;
 import c03.ppl.hidupsehat.Client.HidupSehatClient;
 import c03.ppl.hidupsehat.Entity.ResepMakanan;
 import c03.ppl.hidupsehat.Entity.User;
@@ -39,8 +38,8 @@ public class Sync {
                     values.put(DatabaseField.USER_COLUMN_KELAMIN, user.getKelamin());
                     values.put(DatabaseField.USER_COLUMN_PASSWORD, user.getPassword());
                     values.put(DatabaseField.USER_COLUMN_USERNAME, user.getUsername());
-                    values.put(DatabaseField.USER_COLUMN_BERAT, user.getBerat_badan());
-                    values.put(DatabaseField.USER_COLUMN_TINGGI, user.getTinggi_badan());
+                    values.put(DatabaseField.USER_COLUMN_BERAT, user.getBerat_Badan());
+                    values.put(DatabaseField.USER_COLUMN_TINGGI, user.getTinggi_Badan());
 
                     dbInfo.insert(DatabaseField.USER_TABLE,values);
                 }
@@ -91,8 +90,8 @@ public class Sync {
         User user = new User();
         user.setId(values.getAsInteger(DatabaseField.USER_COLUMN_ID));
         user.setNama(values.getAsString(DatabaseField.USER_COLUMN_NAMA));
-        user.setBerat_badan(values.getAsInteger(DatabaseField.USER_COLUMN_BERAT));
-        user.setTinggi_badan(values.getAsInteger(DatabaseField.USER_COLUMN_TINGGI));
+        user.setBerat_Badan(values.getAsInteger(DatabaseField.USER_COLUMN_BERAT));
+        user.setTinggi_Badan(values.getAsInteger(DatabaseField.USER_COLUMN_TINGGI));
         user.setKelamin(values.getAsString(DatabaseField.USER_COLUMN_KELAMIN));
         user.setPassword(values.getAsString(DatabaseField.USER_COLUMN_PASSWORD));
         user.setUsername(values.getAsString(DatabaseField.USER_COLUMN_USERNAME));
@@ -104,7 +103,7 @@ public class Sync {
 
             @Override
             public void failure(RetrofitError error) {
-                System.err.println("Sync up fail : " + error.getResponse().getReason());
+                System.err.println("Sync up fail : " + error.getResponse().getUrl());
             }
         });
     }

@@ -30,6 +30,7 @@ public class ResepMakananMenu extends Activity {
                 Intent daftar = new Intent(getApplicationContext(), Index.class);
                 Log.e(Index.class.getName(), "Move To Daftar Resep");
                 startActivity(daftar);
+                finish();
             }
         });
 
@@ -39,6 +40,7 @@ public class ResepMakananMenu extends Activity {
                 Intent intent = new Intent(getApplicationContext(), c03.ppl.hidupsehat.Makanan.Search.Index.class);
                 Log.e(c03.ppl.hidupsehat.Makanan.Search.Index.class.getName(), "Move to Pencarian Resep");
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -48,6 +50,7 @@ public class ResepMakananMenu extends Activity {
                 Intent intent = new Intent(getApplicationContext(), c03.ppl.hidupsehat.Makanan.Favorit.Index.class);
                 Log.e(c03.ppl.hidupsehat.Makanan.Favorit.Index.class.getName(), "Move to Daftar Resep Favorit");
                 startActivity(intent);
+                finish();
             }
         });
     }

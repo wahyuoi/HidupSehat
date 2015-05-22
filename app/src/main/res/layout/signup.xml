@@ -138,29 +138,40 @@
             android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/radioGroup">
+            android:id="@+id/radioGroup"
+            android:weightSum="1">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male                               "
-                android:id="@+id/cowo"
+                android:id="@+id/L"
+                android:text="Male"
                 android:layout_below="@+id/textView7"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:checked="true" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Female"
-                android:id="@+id/cewe"
-                android:layout_alignBaseline="@+id/cowo"
-                android:layout_alignBottom="@+id/cowo"
+                android:id="@+id/P"
+                android:layout_alignBaseline="@+id/L"
+                android:layout_alignBottom="@+id/L"
                 android:layout_alignRight="@+id/password"
                 android:layout_alignEnd="@+id/password" />
 
-
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/status"
+                android:layout_alignEnd="@+id/signup"
+                android:layout_below="@+id/radioGroup"
+                android:layout_alignBottom="@+id/cancel"
+                android:layout_toRightOf="@+id/signup"
+                android:layout_toEndOf="@+id/signup"
+                android:layout_gravity="center_horizontal" />
         </RadioGroup>
 
         <ImageButton
@@ -182,8 +193,6 @@
             android:layout_below="@+id/radioGroup"
             android:layout_toRightOf="@+id/signup"
             android:layout_toEndOf="@+id/signup" />
-
-
 
 
     </RelativeLayout>

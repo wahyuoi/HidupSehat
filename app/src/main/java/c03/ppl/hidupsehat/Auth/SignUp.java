@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import c03.ppl.hidupsehat.R;
@@ -36,25 +38,42 @@ public class SignUp extends Activity {
         final EditText inputUsername = (EditText) findViewById(R.id.username);
         final EditText inputPassword = (EditText) findViewById(R.id.password);
         final EditText inputNama = (EditText) findViewById(R.id.nama);
-        final EditText inputTinggi = (EditText) findViewById(R.id.height);
-        final EditText inputBerat = (EditText) findViewById(R.id.weight);
+        final EditText inputTinggi = (EditText) findViewById(R.id.tinggi);
+        final EditText inputBerat = (EditText) findViewById(R.id.berat);
+        final RadioGroup inputSex = (RadioGroup) findViewById(R.id.radioGroup);
         ImageButton buttonSignUp = (ImageButton) findViewById(R.id.signup);
         ImageButton buttonCancel = (ImageButton) findViewById(R.id.cancel);
 
-//        statusLabel = (TextView) findViewById(R.id.status);
+        statusLabel = (TextView) findViewById(R.id.status);
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = inputUsername.getText().toString();
+                if (username == null || username.trim().isEmpty())
+                    inputUsername.setError("Required");
                 String password = inputPassword.getText().toString();
+                if (password == null || password.trim().isEmpty())
+                    inputPassword.setError("Required");
                 String nama = inputNama.getText().toString();
+                if (nama == null || nama.trim().isEmpty())
+                    inputNama.setError("Required");
                 String tinggi = inputTinggi.getText().toString();
+                if (tinggi== null || tinggi.trim().isEmpty())
+                    inputTinggi.setError("Required");
                 String berat = inputBerat.getText().toString();
+                if (berat == null || berat.trim().isEmpty())
+                    inputBerat.setError("Required");
+                String kelamin = null;
+                int kelaminId = inputSex.getCheckedRadioButtonId();
+                if (kelaminId != -1) {
+                    RadioButton kelaminButton = (RadioButton) findViewById(kelaminId);
+                    kelamin = kelaminButton.getText().toString();
+                }
 
-                if (validInput(username, password, nama, tinggi, berat))
+                if (validInput(username, password, nama, tinggi, berat, kelamin))
                     if (!isRegistered(username)) {
-                        doRegister(username, password, nama, tinggi, berat);
+                        doRegister(username, password, nama, tinggi, berat, kelamin);
                         Intent login = new Intent(getApplicationContext(), Login.class);
                         login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         login.putExtra("msg", "Pendaftaran berhasil!");
@@ -64,7 +83,6 @@ public class SignUp extends Activity {
                     } else {
                         statusLabel.setText("username sudah terdaftar!");
                     }
-
             }
         });
 
@@ -80,7 +98,7 @@ public class SignUp extends Activity {
 
     }
 
-    private boolean validInput(String username, String password, String nama, String tinggi, String berat) {
+    private boolean validInput(String username, String password, String nama, String tinggi, String berat, String kelamin) {
         if (username == null || username.trim().isEmpty() || (username.split(" ").length > 1))
             statusLabel.setText("Username tidak boleh kosong");
         else if (password == null || password.trim().isEmpty())
@@ -89,6 +107,8 @@ public class SignUp extends Activity {
             statusLabel.setText("Nama tidak boleh kosong");
         else if (berat == null || berat.trim().isEmpty())
             statusLabel.setText("Berat badan tidak boleh kosong");
+        else if (kelamin == null || kelamin.trim().isEmpty())
+            statusLabel.setText("Kelamin harus dipilih");
         else if (tinggi == null || tinggi.trim().isEmpty())
             statusLabel.setText("Tinggi badan tidak boleh kosong");
         else if (!Misc.isPositiveNumeric(berat))
@@ -111,7 +131,7 @@ public class SignUp extends Activity {
         return ret;
     }
 
-    private boolean doRegister(String username, String password, String nama, String tinggi, String berat) {
+    private boolean doRegister(String username, String password, String nama, String tinggi, String berat, String kelamin) {
         DatabaseInfo dbInfo = new DatabaseInfo(this);
         ContentValues values = new ContentValues();
         values.put(DatabaseField.USER_COLUMN_ID, System.currentTimeMillis());
@@ -120,10 +140,11 @@ public class SignUp extends Activity {
         values.put(DatabaseField.USER_COLUMN_NAMA, nama);
         values.put(DatabaseField.USER_COLUMN_TINGGI, tinggi);
         values.put(DatabaseField.USER_COLUMN_BERAT, berat);
+        values.put(DatabaseField.USER_COLUMN_KELAMIN, kelamin);
         values.put(DatabaseField.USER_COLUMN_IS_LOGIN, 0);
         boolean ret = dbInfo.insert(DatabaseField.USER_TABLE, values);
-        dbInfo.close();
         (new Sync()).registerUser(values, this);
+        dbInfo.close();
         return ret;
     }
 }
