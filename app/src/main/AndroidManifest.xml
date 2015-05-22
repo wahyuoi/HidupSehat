@@ -38,6 +38,10 @@
             android:label="DaftarFavorit"></activity>
         <activity android:name=".Menu.AchievementMenu"
             android:label="MenuAchievement"></activity>
+        <activity android:name=".Profile.UpdateBerat"
+            android:label="UpdateBeratBadan"></activity>
+        <activity android:name=".Profile.EditBerat"
+            android:label="EditBeratBadan"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 

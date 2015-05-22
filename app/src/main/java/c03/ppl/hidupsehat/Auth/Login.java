@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import c03.ppl.hidupsehat.MainActivity;
+import c03.ppl.hidupsehat.Profile.UpdateBerat;
 import c03.ppl.hidupsehat.R;
 import c03.ppl.hidupsehat.database.DatabaseField;
 import c03.ppl.hidupsehat.database.DatabaseInfo;
@@ -59,9 +60,9 @@ public class Login extends Activity {
                     msgLabel.setText("Username atau Password salah!");
                 } else {
                     doRememberLogin(username);
-                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                    main.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(main);
+                    Intent intent = new Intent(getApplicationContext(), UpdateBerat.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
                 }
             }

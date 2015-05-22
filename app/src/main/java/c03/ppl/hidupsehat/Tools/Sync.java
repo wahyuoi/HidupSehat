@@ -2,6 +2,7 @@ package c03.ppl.hidupsehat.Tools;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteConstraintException;
 
 import java.util.List;
 
@@ -40,8 +41,9 @@ public class Sync {
                     values.put(DatabaseField.USER_COLUMN_USERNAME, user.getUsername());
                     values.put(DatabaseField.USER_COLUMN_BERAT, user.getBerat_Badan());
                     values.put(DatabaseField.USER_COLUMN_TINGGI, user.getTinggi_Badan());
-
-                    dbInfo.insert(DatabaseField.USER_TABLE,values);
+                    try{
+                        dbInfo.insert(DatabaseField.USER_TABLE,values);
+                    } catch (SQLiteConstraintException e){}
                 }
                 System.err.println("Sync users down ok");
             }
@@ -85,7 +87,7 @@ public class Sync {
         System.err.println("Insert dummy fav done");
     }
 
-    public void registerUser(ContentValues values, Context context) {
+    public void registerUser(ContentValues values) {
         HidupSehatClient client = ServiceGenerator.createService(HidupSehatClient.class, API_URL);
         User user = new User();
         user.setId(values.getAsInteger(DatabaseField.USER_COLUMN_ID));

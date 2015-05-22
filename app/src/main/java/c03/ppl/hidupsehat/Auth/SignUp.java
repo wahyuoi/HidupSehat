@@ -143,7 +143,7 @@ public class SignUp extends Activity {
         values.put(DatabaseField.USER_COLUMN_KELAMIN, kelamin);
         values.put(DatabaseField.USER_COLUMN_IS_LOGIN, 0);
         boolean ret = dbInfo.insert(DatabaseField.USER_TABLE, values);
-        (new Sync()).registerUser(values, this);
+        (new Sync()).registerUser(values);
         dbInfo.close();
         return ret;
     }
