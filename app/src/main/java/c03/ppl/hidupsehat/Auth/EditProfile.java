@@ -212,7 +212,7 @@ public class EditProfile extends Activity{
                 Cursor cursor = dbInfo.getFromQuery("Select * from "+DatabaseField.USER_TABLE+" where id = '"+id+"'");
                 ContentValues values = new ContentValues();
                 values.put(DatabaseField.USER_COLUMN_ID, cursor.getInt(cursor.getColumnIndex(DatabaseField.USER_COLUMN_ID)));
-                values.put(DatabaseField.USER_COLUMN_USERNAME, cursor.getInt(cursor.getColumnIndex(DatabaseField.USER_COLUMN_USERNAME)));
+                values.put(DatabaseField.USER_COLUMN_USERNAME, cursor.getString(cursor.getColumnIndex(DatabaseField.USER_COLUMN_USERNAME)));
                 values.put(DatabaseField.USER_COLUMN_PASSWORD, password);
                 values.put(DatabaseField.USER_COLUMN_NAMA, cursor.getString(cursor.getColumnIndex(DatabaseField.USER_COLUMN_NAMA)));
                 values.put(DatabaseField.USER_COLUMN_TINGGI, tinggi);
