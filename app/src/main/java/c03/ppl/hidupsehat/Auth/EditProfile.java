@@ -170,19 +170,12 @@ public class EditProfile extends Activity{
 
         final DatabaseInfo dbInfo = new DatabaseInfo(this);
         final int id = dbInfo.getIdLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN);
-        Cursor cursor = dbInfo.getFromQuery("select " + DatabaseField.USER_COLUMN_BERAT + " from " + DatabaseField.USER_TABLE + " where id = '" + id + "'");
+        Cursor cursor = dbInfo.getFromQuery("select * from " + DatabaseField.USER_TABLE + " where id = '" + id + "'");
+
         int berat = cursor.getInt(cursor.getColumnIndex(DatabaseField.USER_COLUMN_BERAT));
-
-        Cursor cursor2 = dbInfo.getFromQuery("SELECT " + DatabaseField.USER_COLUMN_TINGGI + " FROM " + DatabaseField.USER_TABLE + " WHERE id = '" + id + "'");
-        int tinggi = cursor2.getInt(cursor2.getColumnIndex(DatabaseField.USER_COLUMN_TINGGI));
-
-
-        Cursor cursor3 = dbInfo.getFromQuery("SELECT " + DatabaseField.USER_COLUMN_USERNAME + " FROM " + DatabaseField.USER_TABLE + " WHERE id = '" + id + "'");
-        String username = cursor3.getString(cursor3.getColumnIndex(DatabaseField.USER_COLUMN_USERNAME));
-
-
-        Cursor cursor4 = dbInfo.getFromQuery("SELECT " + DatabaseField.USER_COLUMN_PASSWORD + " FROM " + DatabaseField.USER_TABLE + " WHERE id = '" + id + "'");
-        String password = cursor4.getString(cursor4.getColumnIndex(DatabaseField.USER_COLUMN_PASSWORD));
+        int tinggi = cursor.getInt(cursor.getColumnIndex(DatabaseField.USER_COLUMN_TINGGI));
+        String username = cursor.getString(cursor.getColumnIndex(DatabaseField.USER_COLUMN_USERNAME));
+        String password = cursor.getString(cursor.getColumnIndex(DatabaseField.USER_COLUMN_PASSWORD));
 
 
         EditText field = (EditText) findViewById(R.id.weight);
@@ -231,7 +224,7 @@ public class EditProfile extends Activity{
                 (new Sync()).registerUser(values);
                 // redirect
 
-
+                // TODO direct kemana nih harusnnya?
 
                 Intent intent = new Intent(getApplicationContext(), EditProfile.class);
                 Log.e(EditProfile.class.getName(), "Profile Tersimpan");
