@@ -20,12 +20,14 @@ import c03.ppl.hidupsehat.database.DatabaseInfo;
  * Created by wahyuoi on 20/05/15.
  */
 public class Index extends Activity {
+    DatabaseInfo dbInfo;
+    String query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DatabaseInfo dbInfo = new DatabaseInfo(this);
+        dbInfo = new DatabaseInfo(this);
         int idUser = dbInfo.getIdLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN);
-        String query = "Select * from "+DatabaseField.RESEP_MAKANAN_TABLE+
+        query = "Select * from "+DatabaseField.RESEP_MAKANAN_TABLE+
                 " INNER JOIN "+DatabaseField.FAVORIT_TABLE+
                 " ON "+DatabaseField.RESEP_MAKANAN_TABLE+"."+DatabaseField.RESEP_MAKANAN_ID+" = "+
                 DatabaseField.FAVORIT_TABLE+"."+DatabaseField.FAVORIT_RESEP+" where "+
@@ -48,11 +50,13 @@ public class Index extends Activity {
                 Bundle bundle = new Bundle();
 
                 // TODO Id
-                System.out.println(view.getId());
-                bundle.putInt("id", position+1);
+                Cursor cursor = dbInfo.getFromQuery(query);
+                for (int ii=0;ii<position;++ii) cursor.moveToNext();
+                bundle.putInt("id", cursor.getInt(cursor.getColumnIndex(DatabaseField.RESEP_MAKANAN_ID)));
                 Intent intent = new Intent(getApplicationContext(), DisplayResep.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
     }

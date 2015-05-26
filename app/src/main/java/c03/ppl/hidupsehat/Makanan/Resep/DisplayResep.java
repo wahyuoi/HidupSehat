@@ -43,16 +43,19 @@ public class DisplayResep extends Activity {
                 + " = '" + id + "'");
 
         ArrayList<KeteranganBahan> array = new ArrayList();
+        String bahan = "";
         while(cursor.isAfterLast() == false){
             array.add(new KeteranganBahan((cursor.getString(cursor.getColumnIndex(DatabaseField.BAHAN_MAKANAN_NAMA))),
                             (cursor.getString(cursor.getColumnIndex(DatabaseField.RESEP_DAN_BAHAN_KETERANGAN)))));
+            bahan += cursor.getString(cursor.getColumnIndex(DatabaseField.BAHAN_MAKANAN_NAMA)) + "\n";
+            bahan += cursor.getString(cursor.getColumnIndex(DatabaseField.RESEP_DAN_BAHAN_KETERANGAN)) + "\n";
             cursor.moveToNext();
         }
 
-        ListView listView = (ListView) findViewById(R.id.bahan_bahan);
-        CustomListViewAdapter adapter = new CustomListViewAdapter(this, R.layout.atasbawah, array);
-        listView.setAdapter(adapter);
-
+        TextView listView = (TextView) findViewById(R.id.bahan_bahan);
+//        CustomListViewAdapter adapter = new CustomListViewAdapter(this, R.layout.atasbawah, array);
+//        listView.setAdapter(adapter);
+        listView.setText(bahan);
         // cara membuat
         cursor = dbInfo.getFromQuery("select * from " + DatabaseField.RESEP_MAKANAN_TABLE + " where id = '" + id + "'");
         String namaMakanan = cursor.getString(cursor.getColumnIndex(DatabaseField.RESEP_MAKANAN_NAMA));

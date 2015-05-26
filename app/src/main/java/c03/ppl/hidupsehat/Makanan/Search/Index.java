@@ -25,20 +25,21 @@ import static android.R.layout.simple_list_item_1;
  * Created by wahyuoi on 20/05/15.
  */
 public class Index extends Activity {
+    String query;
+    DatabaseInfo dbInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.mencari_resep);
-
         final EditText text = (EditText) findViewById(R.id.search_bar);
         ImageButton search = (ImageButton) findViewById(R.id.search_button);
-        final DatabaseInfo dbInfo = new DatabaseInfo(this);
+        dbInfo = new DatabaseInfo(this);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String key = text.getText().toString();
-                String query = "Select * from " + DatabaseField.RESEP_MAKANAN_TABLE + " where " +
+                String key = text.getText().toString().trim();
+                query = "Select * from " + DatabaseField.RESEP_MAKANAN_TABLE + " where " +
                         DatabaseField.RESEP_MAKANAN_NAMA + " like '%" + key + "%'";
                 Cursor cursor = dbInfo.getFromQuery(query);
 
@@ -63,7 +64,9 @@ public class Index extends Activity {
                 Bundle bundle = new Bundle();
                 // TODO ID
                 System.out.println(id);
-                bundle.putInt("id", position+1);
+                Cursor cursor = dbInfo.getFromQuery(query);
+                for (int ii=0;ii<position;++ii) cursor.moveToNext();
+                bundle.putInt("id", cursor.getInt(cursor.getColumnIndex(DatabaseField.RESEP_MAKANAN_ID)));
                 Intent intent = new Intent(getApplicationContext(), DisplayResep.class);
                 intent.putExtras(bundle);
                 startActivity(intent);

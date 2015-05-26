@@ -53,6 +53,7 @@ public class ResepMakananMenu extends Activity {
                 Log.e(c03.ppl.hidupsehat.Makanan.Favorit.Index.class.getName(), "Move to Daftar Resep Favorit");
                 startActivity(intent);
 
+
             }
         });
     }
