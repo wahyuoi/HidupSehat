@@ -23,7 +23,7 @@ public class DatabaseInfo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
-                "create table " + DatabaseField.USER_TABLE + " ("+DatabaseField.USER_COLUMN_ID+" integer primari key, "+DatabaseField.USER_COLUMN_USERNAME
+                "create table " + DatabaseField.USER_TABLE + " ("+DatabaseField.USER_COLUMN_ID+" number primari key, "+DatabaseField.USER_COLUMN_USERNAME
                         +" text unique, "+ DatabaseField.USER_COLUMN_PASSWORD+" text, "+DatabaseField.USER_COLUMN_IS_LOGIN
                         +" number, "+DatabaseField.USER_COLUMN_NAMA+" text, "+DatabaseField.USER_COLUMN_TINGGI
                         +" number, "+DatabaseField.USER_COLUMN_BERAT+" number, "+DatabaseField.USER_COLUMN_UMUR
@@ -148,6 +148,18 @@ public class DatabaseInfo extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from " + DatabaseField.FAVORIT_TABLE + " where "
                 + DatabaseField.FAVORIT_RESEP + " = " + isResep + " AND " + DatabaseField.FAVORIT_USER
                 + " = " + idUser, null);
+
+        res.moveToFirst();
+        boolean ret = (res.isAfterLast() == false);
+        res.close();
+        db.close();
+        return ret;
+    }
+
+    public boolean isExists(String userTable, String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + userTable + " where "
+                + DatabaseField.USER_COLUMN_USERNAME + " = '" + username + "'", null);
 
         res.moveToFirst();
         boolean ret = (res.isAfterLast() == false);

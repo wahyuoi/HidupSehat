@@ -33,7 +33,7 @@ public class Sync {
             @Override
             public void success(List<User> users, Response response) {
                 DatabaseInfo dbInfo = new DatabaseInfo(context);
-                dbInfo.deleteTableContent(DatabaseField.USER_TABLE);
+//                dbInfo.deleteTableContent(DatabaseField.USER_TABLE);
                 for (User user : users) {
                     ContentValues values = new ContentValues();
                     values.put(DatabaseField.USER_COLUMN_ID, user.getId());
@@ -44,7 +44,8 @@ public class Sync {
                     values.put(DatabaseField.USER_COLUMN_BERAT, user.getBerat_Badan());
                     values.put(DatabaseField.USER_COLUMN_TINGGI, user.getTinggi_Badan());
                     try{
-                        dbInfo.insert(DatabaseField.USER_TABLE,values);
+                        if (!dbInfo.isExists(DatabaseField.USER_TABLE, user.getUsername()))
+                            dbInfo.insert(DatabaseField.USER_TABLE,values);
                     } catch (SQLiteConstraintException e){}
                 }
                 System.err.println("Sync users down ok");

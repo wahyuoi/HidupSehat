@@ -26,6 +26,7 @@ public class EditBerat extends Activity{
 
         final DatabaseInfo dbInfo = new DatabaseInfo(this);
         final int id = dbInfo.getIdLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN);
+        System.out.println(id+" login");
         Cursor cursor = dbInfo.getFromQuery("select " + DatabaseField.USER_COLUMN_BERAT + " from " + DatabaseField.USER_TABLE + " where id = '" + id + "'");
         int berat = cursor.getInt(cursor.getColumnIndex(DatabaseField.USER_COLUMN_BERAT));
 

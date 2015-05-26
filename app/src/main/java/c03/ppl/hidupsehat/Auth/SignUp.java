@@ -69,6 +69,10 @@ public class SignUp extends Activity {
                 if (kelaminId != -1) {
                     RadioButton kelaminButton = (RadioButton) findViewById(kelaminId);
                     kelamin = kelaminButton.getText().toString();
+                    if (kelamin.equalsIgnoreCase("M"))
+                        kelamin = "L";
+                    else
+                        kelamin = "P";
                 }
 
                 if (validInput(username, password, nama, tinggi, berat, kelamin))
@@ -134,7 +138,7 @@ public class SignUp extends Activity {
     private boolean doRegister(String username, String password, String nama, String tinggi, String berat, String kelamin) {
         DatabaseInfo dbInfo = new DatabaseInfo(this);
         ContentValues values = new ContentValues();
-        values.put(DatabaseField.USER_COLUMN_ID, System.currentTimeMillis());
+        values.put(DatabaseField.USER_COLUMN_ID, System.currentTimeMillis() % 1000007);
         values.put(DatabaseField.USER_COLUMN_USERNAME, username);
         values.put(DatabaseField.USER_COLUMN_PASSWORD, password);
         values.put(DatabaseField.USER_COLUMN_NAMA, nama);
