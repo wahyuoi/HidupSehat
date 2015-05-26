@@ -68,10 +68,10 @@ public class DisplayResep extends Activity {
         TextView saran = (TextView) findViewById(R.id.saran_penyajian);
         TextView kalori = (TextView) findViewById(R.id.total_kalori);
 
-        nama.setText(namaMakanan);
-        cara.setText(caraMembuat);
-        saran.setText(saranPenyajian);
-        kalori.setText(kaloriTotal);
+        nama.setText(removeTag(namaMakanan));
+        cara.setText(removeTag(caraMembuat));
+        saran.setText(removeTag(saranPenyajian));
+        kalori.setText(removeTag(kaloriTotal));
 
         // favorit
         boolean isFav = dbInfo.isFavorit(id, idUser);
@@ -95,6 +95,9 @@ public class DisplayResep extends Activity {
         });
     }
 
+    public String removeTag(String text){
+        return text.replaceAll("<[^>]*>","").replaceAll("(\r\n)+", "\r\n").trim();
+    }
     private class ViewHolder {
         TextView nama;
         TextView keterangan;
