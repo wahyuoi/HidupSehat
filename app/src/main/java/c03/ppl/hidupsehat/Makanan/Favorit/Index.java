@@ -46,11 +46,13 @@ public class Index extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
+
+                // TODO Id
+                System.out.println(view.getId());
                 bundle.putInt("id", position+1);
                 Intent intent = new Intent(getApplicationContext(), DisplayResep.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                finish();
             }
         });
     }

@@ -43,7 +43,6 @@ public class MainActivity extends ActionBarActivity {
                 Intent editProfile = new Intent(getApplicationContext(), EditProfile.class);
                 Log.e(MainActivity.class.getName(), "Move to Edit Profile");
                 startActivity(editProfile);
-                finish();
             }
         });
         buttonResepMakanan.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +51,6 @@ public class MainActivity extends ActionBarActivity {
                 Intent resepMakanan = new Intent(getApplicationContext(), ResepMakananMenu.class);
                 Log.e(ResepMakananMenu.class.getName(), "Move to Resep Makanan Sehat");
                 startActivity(resepMakanan);
-                finish();
             }
         });
         buttonAchievement.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
                 Intent intent = new Intent(getApplicationContext(), AchievementMenu.class);
                 Log.e(AchievementMenu.class.getName(), "Move to Achievement");
                 startActivity(intent);
-                finish();
             }
         });
         dbInfo = new DatabaseInfo(this);
@@ -69,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
         if (!dbInfo.isLogin(DatabaseField.USER_TABLE, DatabaseField.USER_COLUMN_IS_LOGIN)){
             // Sycn user
             Sync sync = new Sync();
-            sync.fetchUsers(this);
+            sync.fetch(this);
 
             Intent loginScreen = new Intent(getApplicationContext(), Login.class);
             loginScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

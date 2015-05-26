@@ -137,4 +137,22 @@ public class DatabaseInfo extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(table, null, null );
     }
+
+    public void deleteFrom(String table, String where, String[] arg) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(table, where, arg);
+    }
+
+    public boolean isFavorit(int isResep, int idUser) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + DatabaseField.FAVORIT_TABLE + " where "
+                + DatabaseField.FAVORIT_RESEP + " = " + isResep + " AND " + DatabaseField.FAVORIT_USER
+                + " = " + idUser, null);
+
+        res.moveToFirst();
+        boolean ret = (res.isAfterLast() == false);
+        res.close();
+        db.close();
+        return ret;
+    }
 }

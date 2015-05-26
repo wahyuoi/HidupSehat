@@ -8,6 +8,6 @@ public class GithubClient {
 
     public static void main(String... args) {
         Sync sync = new Sync();
-//        sync.fetchUsers();
+//        sync.fetch();
     }
 }

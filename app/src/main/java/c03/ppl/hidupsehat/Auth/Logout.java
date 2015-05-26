@@ -1,5 +1,6 @@
 package c03.ppl.hidupsehat.Auth;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.util.Log;
@@ -13,9 +14,9 @@ import c03.ppl.hidupsehat.database.DatabaseInfo;
  * Created by wahyuoi on 09/04/15.
  */
 public class Logout implements View.OnClickListener {
-    private final MainActivity activity;
+    private final Activity activity;
 
-    public Logout(MainActivity mainActivity) {
+    public Logout(Activity mainActivity) {
         this.activity = mainActivity;
     }
 

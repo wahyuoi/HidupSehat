@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/background">
 
 
 <RelativeLayout
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
 
@@ -42,7 +44,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/gambar_resep_makanan"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -55,11 +57,10 @@
             android:text="Bahan - Bahan"
             android:id="@+id/textView1" />
 
-        <EditText
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bahan_bahan"
-            android:layout_weight="0.20" />
+            android:layout_height="169dp"
+            android:id="@+id/bahan_bahan" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,11 +69,11 @@
             android:text="Cara Membuat"
             android:id="@+id/textView3" />
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cara_membuat"
-            android:layout_weight="0.77" />
+            android:layout_height="111dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/cara_membuat" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,12 +82,13 @@
             android:text="Saran Penyajian"
             android:id="@+id/textView" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/saran_penyajian"
-            android:layout_weight="0.77" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/saran_penyajian" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -95,12 +97,13 @@
             android:text="Total Kalori"
             android:id="@+id/textView2" />
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/total_kalori" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/total_kalori"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 

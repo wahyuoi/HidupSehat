@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteConstraintException;
 import java.util.List;
 
 import c03.ppl.hidupsehat.Client.HidupSehatClient;
+import c03.ppl.hidupsehat.Entity.BahanMakanan;
+import c03.ppl.hidupsehat.Entity.ResepDanBahan;
 import c03.ppl.hidupsehat.Entity.ResepMakanan;
 import c03.ppl.hidupsehat.Entity.User;
 import c03.ppl.hidupsehat.database.DatabaseField;
@@ -21,7 +23,7 @@ import retrofit.client.Response;
 public class Sync {
     final String API_URL = "http://ppl-c03.cs.ui.ac.id/index.php/service/";
 
-    public void fetchUsers(final Context context) {
+    public void fetch(final Context context) {
 
         // Create a very simple REST adapter which points the HidupSehat API endpoint.
         HidupSehatClient client = ServiceGenerator.createService(HidupSehatClient.class, API_URL);
@@ -78,13 +80,56 @@ public class Sync {
             }
         });
 
-        // DUMMY FAVORIT
-        DatabaseInfo dbInfo = new DatabaseInfo(context);
-        ContentValues values = new ContentValues();
-        values.put(DatabaseField.FAVORIT_RESEP, 1);
-        values.put(DatabaseField.FAVORIT_USER, 1);
-        dbInfo.insert(DatabaseField.FAVORIT_TABLE, values);
-        System.err.println("Insert dummy fav done");
+        client.getAllBahan(new Callback<List<BahanMakanan>>() {
+            @Override
+            public void success(List<BahanMakanan> bahanMakanans, Response response) {
+                DatabaseInfo dbInfo = new DatabaseInfo(context);
+                dbInfo.deleteTableContent(DatabaseField.BAHAN_MAKANAN_TABLE);
+                for (BahanMakanan bahanMakanan : bahanMakanans) {
+                    ContentValues values = new ContentValues();
+                    values.put(DatabaseField.BAHAN_MAKANAN_ID, bahanMakanan.getId());
+                    values.put(DatabaseField.BAHAN_MAKANAN_NAMA, bahanMakanan.getNama());
+                    values.put(DatabaseField.BAHAN_MAKANAN_KALORI, bahanMakanan.getKalori());
+                    dbInfo.insert(DatabaseField.BAHAN_MAKANAN_TABLE, values);
+                }
+                System.err.println("Sync bahan makanan down ok");
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                System.err.println("Sync bahana makanan down fail");
+            }
+        });
+
+        client.getAllResepDanBahan(new Callback<List<ResepDanBahan>>() {
+            @Override
+            public void success(List<ResepDanBahan> resepDanBahans, Response response) {
+                DatabaseInfo dbInfo = new DatabaseInfo(context);
+                dbInfo.deleteTableContent(DatabaseField.RESEP_DAN_BAHAN_TABLE);
+                for(ResepDanBahan resep : resepDanBahans) {
+                    ContentValues values = new ContentValues();
+                    values.put(DatabaseField.RESEP_DAN_BAHAN_ID_BAHAN, resep.getIdBahan());
+                    values.put(DatabaseField.RESEP_DAN_BAHAN_ID_RESEP, resep.getIdResep());
+                    values.put(DatabaseField.RESEP_DAN_BAHAN_KETERANGAN, resep.getKeterangan());
+
+                    dbInfo.insert(DatabaseField.RESEP_DAN_BAHAN_TABLE, values);
+                }
+                System.err.println("sync resep dan bahan up ok");
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                System.err.println("sync resep dan bahan down fail");
+            }
+        });
+
+//        // TODO DUMMY FAVORIT
+//        DatabaseInfo dbInfo = new DatabaseInfo(context);
+//        ContentValues values = new ContentValues();
+//        values.put(DatabaseField.FAVORIT_RESEP, 1);
+//        values.put(DatabaseField.FAVORIT_USER, 1);
+//        dbInfo.insert(DatabaseField.FAVORIT_TABLE, values);
+//        System.err.println("Insert dummy fav done");
     }
 
     public void registerUser(ContentValues values) {

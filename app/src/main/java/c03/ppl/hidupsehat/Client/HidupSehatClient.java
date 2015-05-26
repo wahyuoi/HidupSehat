@@ -2,6 +2,8 @@ package c03.ppl.hidupsehat.Client;
 
 import java.util.List;
 
+import c03.ppl.hidupsehat.Entity.BahanMakanan;
+import c03.ppl.hidupsehat.Entity.ResepDanBahan;
 import c03.ppl.hidupsehat.Entity.ResepMakanan;
 import c03.ppl.hidupsehat.Entity.User;
 import retrofit.Callback;
@@ -21,4 +23,10 @@ public interface HidupSehatClient {
 
     @POST("/addUser")
     public void postUser(@Body User user, Callback<User> call);
+
+    @GET("/bahanMakananList")
+    public void getAllBahan(Callback<List<BahanMakanan>> call);
+
+    @GET("/resepDanBahan")
+    public void getAllResepDanBahan(Callback<List<ResepDanBahan>> call);
 }

@@ -2,11 +2,13 @@ package c03.ppl.hidupsehat.Menu;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import c03.ppl.hidupsehat.Auth.Logout;
 import c03.ppl.hidupsehat.Makanan.Resep.Index;
 import c03.ppl.hidupsehat.R;
 
@@ -30,7 +32,7 @@ public class ResepMakananMenu extends Activity {
                 Intent daftar = new Intent(getApplicationContext(), Index.class);
                 Log.e(Index.class.getName(), "Move To Daftar Resep");
                 startActivity(daftar);
-                finish();
+
             }
         });
 
@@ -40,7 +42,7 @@ public class ResepMakananMenu extends Activity {
                 Intent intent = new Intent(getApplicationContext(), c03.ppl.hidupsehat.Makanan.Search.Index.class);
                 Log.e(c03.ppl.hidupsehat.Makanan.Search.Index.class.getName(), "Move to Pencarian Resep");
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -50,7 +52,7 @@ public class ResepMakananMenu extends Activity {
                 Intent intent = new Intent(getApplicationContext(), c03.ppl.hidupsehat.Makanan.Favorit.Index.class);
                 Log.e(c03.ppl.hidupsehat.Makanan.Favorit.Index.class.getName(), "Move to Daftar Resep Favorit");
                 startActivity(intent);
-                finish();
+
             }
         });
     }
