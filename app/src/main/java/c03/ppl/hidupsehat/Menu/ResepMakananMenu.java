@@ -56,5 +56,16 @@ public class ResepMakananMenu extends Activity {
 
             }
         });
+        //Edit Terbaru
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RequestResep.class);
+                Log.e(RequestResep.class.getName(), "Move to Form Request Resep");
+                startActivity(intent);
+                finish();
+            }
+        });
+        //Edit Terbaru
     }
 }
