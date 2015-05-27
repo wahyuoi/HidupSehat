@@ -42,6 +42,19 @@
             android:label="UpdateBeratBadan"></activity>
         <activity android:name=".Profile.EditBerat"
             android:label="EditBeratBadan"></activity>
+            
+        <!--Edit Terbaru-->
+
+        <activity android:name=".Achievement.Kalori"
+            android:label="Kalori"></activity>
+
+        <activity android:name=".Achievement.Olahraga"
+            android:label="Olahraga"></activity>
+
+        <activity android:name=".Makanan.Request.RequestResep"
+            android:label="RequestResep"></activity>
+        <!--Edit Terbaru-->
+    
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 
